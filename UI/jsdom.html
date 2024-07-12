@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p id="i1">Lorem ipsum dolor sit.</p>
+    <p class="c1">Lorem ipsum dolor sit amet.</p>
+    <div class="c1">Lorem ipsum dolor sit amet.</div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+    <button onclick="test()">Click Here</button>
+    <script type="text/javascript">
+      function test() {
+        // access element having id = i1 & modify its content
+        let element1 = document.getElementById("i1");
+        // innerHTML is a property of an element to add HTML
+        element1.innerHTML = "Button clicked...";
+        element1.style.color = "blue"; // <p style=color:blue>
+        // access all the elements having the same class & modify its content
+        let elementsArray = document.querySelectorAll(".c1");
+        let elements2 = document.getElementsByClassName("c1");
+        for (let i = 0; i < elements2.length; i++) {
+          elements2[i].innerHTML = "HELLO WORLD";
+        }
+        elements2.forEach(
+          (value, index) =>
+            (value.innerHTML = `class 'c1' count ${index + 1} changed`)
+        );
+      }
+    </script>
+  </body>
+</html>

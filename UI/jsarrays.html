@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      let items = [20, 10, 50, 40, 30];
+
+      // replace callback fn with arrow fn
+      items.forEach(function (value, index) {
+        document.write("<h3>Value=" + value + ", Index=" + index + "</h3>");
+        document.write(`<h2>Value=${value} and Index=${index}</h2>`);
+      });
+      document.write("<hr />");
+      items.forEach((value, index) =>
+        document.write(`<h2>Value=${value} and Index=${index}</h2>`)
+      );
+      for (let x = 0; x < 10; x++) {
+        document.write("<p>x=" + x + "</p>");
+        document.write(`<p>x=${x}</p>`);
+      }
+      //document.write("<h3>y=" + y + "</h3>");
+    </script>
+  </body>
+</html>
