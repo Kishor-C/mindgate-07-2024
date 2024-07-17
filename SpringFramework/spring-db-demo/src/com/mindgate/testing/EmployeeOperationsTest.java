@@ -1,5 +1,6 @@
 package com.mindgate.testing;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.context.ApplicationContext;
@@ -24,8 +25,7 @@ public class EmployeeOperationsTest {
 			switch(option) {
 			case 1:
 				Employee employee = new Employee();
-				System.out.println("Enter Id:");
-				employee.setId(scan.nextInt()); 
+				
 				System.out.println("Enter Name:");
 				employee.setName(scan.next());
 				System.out.println("Enter Salary:");
@@ -38,9 +38,20 @@ public class EmployeeOperationsTest {
 				Employee emp = dao.findById(scan.nextInt());
 				if(emp != null) {
 					System.out.println("Id="+emp.getId()+", Name="+emp.getName());
+				} else {
+					System.err.println("Entered id is not found!");
 				}
 				break;
+			case 3: 
+				List<Employee> list = dao.findAll();
+//				for(Employee e : list) {
+//					System.out.println(e);
+//				}
+				list.forEach(e -> System.out.println(e));
+				System.out.println("_____________________________________");
 			}
+			
+				
 		} while(option != 99);
 		scan.close();
 	}

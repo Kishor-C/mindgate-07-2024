@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+
+
+
+
+	<context:component-scan base-package="com"></context:component-scan>
+
+	<mvc:annotation-driven/>
+	<tx:annotation-driven/>
+	
+	
+	<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+			<property name="url" value="jdbc:mysql://localhost:3306/mydb"></property>
+			<property name="username" value="root"></property>
+			<property name="password" value="root"></property>
+	</bean>
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="ds"></property>
+	</bean>
+	
+	
+	<!-- <bean id = "service" class = "pack.EmployeeService"></bean>	 -->
+
+	
+
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/pages/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+<!-- Uncomment this for ORM support 
+	<bean id="dataSourceBean" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+        <property name="driverClassName" value=""></property>  
+        <property name="url" value=""></property>  
+        <property name="username" value=""></property>  
+        <property name="password" value=""></property>  
+    </bean> 
+    
+    <bean id="sf" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">  
+        <property name="dataSource" ref="dataSourceBean"></property>  
+        <property name="annotatedClasses">
+        	<list>
+        		<value></value>
+        	</list>
+        </property>  
+        <property name = "hibernateProperties">
+        	<props>
+        		<prop key = "hibernate.dialect"></prop>
+				<prop key = "hibernate.hbm2ddl.auto"></prop>
+        	</props>
+        </property>
+     </bean>
+	 
+	 <bean id = "hibernateTemplateBean" class = "org.springframework.orm.hibernate4.HibernateTemplate">
+     	<property name = "sessionFactory" ref = "sf"></property>
+     </bean>
+     
+	<bean id = "" class = "" >
+     	<property name = "template" ref = "hibernateTemplateBean"></property>
+     </bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">  
+        <property name="sessionFactory" ref="sf"></property>  
+    </bean> 
+
+	-->
+
+</beans>
