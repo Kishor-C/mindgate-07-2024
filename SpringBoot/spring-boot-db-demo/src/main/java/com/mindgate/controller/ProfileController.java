@@ -1,10 +1,13 @@
 package com.mindgate.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +19,7 @@ import com.mindgate.beans.Profile;
 import com.mindgate.exceptions.ProfileNotFoundException;
 import com.mindgate.service.ProfileService;
 
+@CrossOrigin(origins = "*") // to accept the request from any source
 @RestController
 @RequestMapping("/api/v2")
 public class ProfileController {
@@ -30,7 +34,11 @@ public class ProfileController {
 			return ResponseEntity.status(200).body(p);
 		} catch(ProfileNotFoundException e) {
 			String error = e.getMessage();
-			return ResponseEntity.status(404).body(error);
+			// in order to represent the error message in key value pairs we use Map
+			Map<String, String> errorMap = new HashMap<>();
+			errorMap.put("message", error);
+			//  pass the map object in the response body which is formatted to JSON
+			return ResponseEntity.status(404).body(errorMap);
 		}
 	}
 	
